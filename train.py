@@ -60,7 +60,11 @@ def record(mac_address) -> list:
     callback = FnVoid_VoidP_DataP(data_handler)
 
     device = MetaWear(mac_address)
-    device.connect()
+    try:
+        device.connect()
+    except WarbleException:
+        print('Failed to connect to device {}'.format(mac_address))
+        sys.exit(1)
 
     libmetawear.mbl_mw_settings_set_connection_parameters(device.board, 7.5, 7.5, 0, 6000)
     libmetawear.mbl_mw_acc_set_odr(device.board, 100.0)
