@@ -3,12 +3,11 @@
 This is a handwriting recorder/trainer for MetaWear sensor.
 """
 
-import sys
 import argparse
-from threading import Event
 from time import sleep
-from mbientlab.warble import *
+
 from mbientlab.metawear import *
+from mbientlab.warble import *
 
 
 def first_metawear_address(wait_seconds=5.0):
@@ -46,9 +45,7 @@ def list_devices(wait_seconds=5.0):
 
 
 def record_and_train(mac_address: str):
-
     samples = record(mac_address)
-
     text = input('Write reference text press ENTER\n')
 
 
